@@ -8,3 +8,29 @@
     outline: 0;
     box-sizing: border-box;
 }
+
+/* css for the to do box shadow */
+.shadow{
+    box-shadow: rgb(36, 35, 35) 10px 10px 10px, rgb(143, 139, 139) -10px -10px 10px;
+}
+
+/* code for vertical scroll bar customization */
+/* width of scroll bar*/
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* color of taskbar */
+  ::-webkit-scrollbar-track {
+    background: black;
+  }
+  
+  /* dot of scroll bar */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* color on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(100, 100, 100);
+  }

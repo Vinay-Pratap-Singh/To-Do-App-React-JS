@@ -54,20 +54,20 @@ const App = () => {
   return (
     <>
       {/* wrapping the whole app inside this div */}
-      <div className="h-screen w-full flex items-center justify-center">
-        {/* main div for the to do app */}
-        <div className="border border-black p-10 gap-4 flex flex-col items-center justify-center">
-          <h1 className="font-extrabold text-2xl">To Do App</h1>
+      <div style={{}} className="h-screen w-full flex items-center justify-center bg-gray-600 overscroll-none">
+        {/* div for the to do app */}
+        <div className="h-[80vh] w-[330px] p-6 gap-4 flex flex-col items-center bg-gray-800 shadow rounded-lg overflow-y-auto overflow-x-hidden">
+          <h1 className="font-bold text-2xl text-white">To Do App</h1>
 
           {/* input fields for the todo */}
           <form onSubmit={addTodo} className="flex gap-4">
             <input
-              className="border border-black px-2 py-1"
+              className="border px-2 py-1 text-sm font-bold flex-1"
               placeholder="Write your TODO"
               value={text}
               onChange={(event) => setText(event.target.value)}
             ></input>
-            <button>
+            <button className="bg-gray-700 hover:bg-black px-4 rounded-sm text-white font-bold hover:font-extrabold hover:text-green-500">
               <i className="fa-solid fa-plus"></i>
             </button>
           </form>
@@ -76,20 +76,20 @@ const App = () => {
           {listItem.map((element, index) => {
             return (
               <div
-                className="w-full flex items-center justify-between gap-4"
+                className="w-full flex items-center justify-between gap-4 px-2 py-1 bg-transparent text-white border"
                 key={index}
               >
                 <p>{element}</p>
                 <div className="flex items-center justify-center gap-4">
                   <button onClick={() => editItem(index)}>
-                    <i className="fa-solid fa-pen-to-square"></i>
+                    <i className="fa-solid fa-pen-to-square hover:text-green-500"></i>
                   </button>
                   <button
                     onClick={() => {
                       deleteItem(index);
                     }}
                   >
-                    <i className="fa-solid fa-trash"></i>
+                    <i className="fa-solid fa-trash hover:text-red-500"></i>
                   </button>
                 </div>
               </div>

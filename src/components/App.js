@@ -4,7 +4,9 @@ import React, { useState } from "react";
 
 const App = () => {
   const [text, setText] = useState("");
-  const [listItem, setListItem] = useState([]);
+  // assigning the localstorage data to list item if data exist
+  let localData = localStorage.getItem("data");
+  const [listItem, setListItem] = useState(localData?(localStorage.getItem("data")).split(","):[]);
 
   // to check that it was edited one or not
   let [editable, setEditable] = useState(false);
@@ -13,15 +15,19 @@ const App = () => {
   // function to add the item in the todo list
   const addTodo = (event) => {
     event.preventDefault();
+    let newItems;
     if (editable && text) {
-      let newItems = [...listItem];
+      newItems = [...listItem];
       newItems[editableIndex] = text;
       setEditable(false);
       setListItem([...newItems]);
     } else if (text) {
-      setListItem([...listItem, text]);
+      newItems = [...listItem, text];
+      setListItem(newItems);
     }
     setText("");
+    // Saving the data in the local storage
+    localStorage.setItem("data", newItems);
   };
 
   // function to delete the item
@@ -32,6 +38,8 @@ const App = () => {
       }
     });
     setListItem(newList);
+    // Saving the data in the local storage
+    localStorage.setItem("data", newList);
   };
 
   // function to edit the item details
@@ -39,6 +47,8 @@ const App = () => {
     setText(listItem[index]);
     setEditable(true);
     setEditableIndex(index);
+    // Saving the data in the local storage
+    localStorage.setItem("data", listItem);
   };
 
   return (

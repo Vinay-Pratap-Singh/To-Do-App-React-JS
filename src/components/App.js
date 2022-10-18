@@ -11,7 +11,8 @@ const App = () => {
   let [editableIndex, setEditableIndex] = useState(0);
 
   // function to add the item in the todo list
-  const addTodo = () => {
+  const addTodo = (event) => {
+    event.preventDefault();
     if (editable && text) {
       let newItems = [...listItem];
       newItems[editableIndex] = text;
@@ -39,6 +40,7 @@ const App = () => {
     setEditable(true);
     setEditableIndex(index);
   };
+
   return (
     <>
       {/* wrapping the whole app inside this div */}
@@ -48,17 +50,17 @@ const App = () => {
           <h1 className="font-extrabold text-2xl">To Do App</h1>
 
           {/* input fields for the todo */}
-          <div className="flex gap-4">
+          <form onSubmit={addTodo} className="flex gap-4">
             <input
               className="border border-black px-2 py-1"
               placeholder="Write your TODO"
               value={text}
               onChange={(event) => setText(event.target.value)}
             ></input>
-            <button onClick={addTodo}>
+            <button>
               <i className="fa-solid fa-plus"></i>
             </button>
-          </div>
+          </form>
 
           {/* displaying all the items */}
           {listItem.map((element, index) => {
